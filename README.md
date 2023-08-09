@@ -26,3 +26,6 @@ To build for yourself, mae sure Ergogen CLI is installed. Then download/clone th
 
 To also generate the case files, use the full:
 `ergogen . && for i in output/cases/*.jscad; do npx @jscad/cli@1 "$i" -of stla ; done`
+
+## Firmware
+I use ZMK as firmware. You can find tested firmware and an initial keymap in the [lambbt_zmk repo](https://github.com/johnlamb/lambbt_zmk).
