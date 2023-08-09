@@ -6,7 +6,9 @@ units:
   px: kx + pd
   py: ky + pd
 
-  wpd: 2
+  wpd: 2.5
+  short_wpd: 0.5
+  inner_wpd: -0.4
 
   # M2 screws
   screwsize: 1.5
@@ -126,6 +128,18 @@ outlines:
       where:
         ref: matrix_middle_bottom
         shift: [-13,-188]
+  cutout_circle_small_inner_wall:
+    - what: circle
+      radius: 150-short_wpd
+      where:
+        ref: matrix_middle_bottom
+        shift: [-13,-188]
+  cutout_circle_small_inner_inner_wall:
+    - what: circle
+      radius: 150-inner_wpd
+      where:
+        ref: matrix_middle_bottom
+        shift: [-13,-188]
   cutout_circle_large:
     - what: circle
       radius: 300
@@ -175,7 +189,93 @@ outlines:
         - ref: matrix_pinky_top
           shift: [0.77px, 0.5py]
       fillet: 1
-  xlboard:
+  _case_board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_pinky_top
+          shift: [-0.5px-short_wpd, 0.5py+short_wpd]
+        - ref: matrix_pinky_bottom
+          shift: [-0.5px-short_wpd, -0.5py-short_wpd]
+        - ref: thumbs_outer_cluster
+          shift: [0.5px+short_wpd, -0.5py-short_wpd]
+        - ref: thumbs_outer_cluster
+          shift: [0.5px+short_wpd, 0.5py+short_wpd]
+
+        -
+          - ref: matrix_inner_top
+            affect: r
+          - shift: [0,2.675py+short_wpd/2]
+
+        - ref: matrix_inner_top
+          shift: [0.5px+short_wpd, -0.5py+short_wpd]
+        - ref: matrix_inner_top
+          shift: [0.5px+short_wpd, 0.5py+short_wpd]
+        - ref: matrix_inner_top
+          shift: [-0.5px+pd+short_wpd, 0.5py+short_wpd]
+
+        - ref: matrix_index_top
+          shift: [0.5px+short_wpd, 0.5py+short_wpd] 
+        - ref: matrix_index_top
+          shift: [-0.66px+short_wpd, 0.5py+short_wpd] 
+
+        - ref: matrix_middle_top
+          shift: [0.5px+short_wpd, 0.5py+short_wpd]
+        - ref: matrix_middle_top
+          shift: [-0.5px-short_wpd, 0.5py+short_wpd]
+
+        - ref: matrix_ring_top
+          shift: [0.64px-short_wpd, 0.5py+short_wpd]
+        - ref: matrix_ring_top
+          shift: [-0.5px-short_wpd, 0.5py+short_wpd]
+        
+        - ref: matrix_pinky_top
+          shift: [0.77px-short_wpd, 0.5py+short_wpd]
+      fillet: 1
+  _case_inner_board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_pinky_top
+          shift: [-0.5px-inner_wpd, 0.5py+inner_wpd]
+        - ref: matrix_pinky_bottom
+          shift: [-0.5px-inner_wpd, -0.5py-inner_wpd]
+        - ref: thumbs_outer_cluster
+          shift: [0.5px+inner_wpd, -0.5py-inner_wpd]
+        - ref: thumbs_outer_cluster
+          shift: [0.5px+inner_wpd, 0.5py+inner_wpd+0.5]
+
+        -
+          - ref: matrix_inner_top
+            affect: r
+          - shift: [0,2.675py+inner_wpd/2-0.5]
+
+        - ref: matrix_inner_top
+          shift: [0.5px+inner_wpd, -0.5py+inner_wpd]
+        - ref: matrix_inner_top
+          shift: [0.5px+inner_wpd, 0.5py+inner_wpd]
+        - ref: matrix_inner_top
+          shift: [-0.5px+pd+inner_wpd, 0.5py+inner_wpd]
+
+        - ref: matrix_index_top
+          shift: [0.5px+inner_wpd, 0.5py+inner_wpd] 
+        - ref: matrix_index_top
+          shift: [-0.66px+inner_wpd, 0.5py+inner_wpd] 
+
+        - ref: matrix_middle_top
+          shift: [0.5px+inner_wpd, 0.5py+inner_wpd]
+        - ref: matrix_middle_top
+          shift: [-0.5px-inner_wpd, 0.5py+inner_wpd]
+
+        - ref: matrix_ring_top
+          shift: [0.64px-inner_wpd, 0.5py+inner_wpd]
+        - ref: matrix_ring_top
+          shift: [-0.5px-inner_wpd, 0.5py+inner_wpd]
+        
+        - ref: matrix_pinky_top
+          shift: [0.77px-inner_wpd, 0.5py+inner_wpd]
+      fillet: 1
+  _case_xlboard:
     - what: polygon
       operation: stack
       points:
@@ -186,12 +286,12 @@ outlines:
         - ref: thumbs_outer_cluster
           shift: [0.5px+wpd, -0.5py-wpd]
         - ref: thumbs_outer_cluster
-          shift: [0.5px+wpd, 0.5py+wpd]
+          shift: [0.5px+wpd, 0.5py+short_wpd]
 
         -
           - ref: matrix_inner_top
             affect: r
-          - shift: [0,2.675py+wpd/2]
+          - shift: [0,2.675py+wpd+0.5]
 
         - ref: matrix_inner_top
           shift: [0.5px+wpd, -0.5py+wpd]
@@ -219,7 +319,7 @@ outlines:
           shift: [0.77px-wpd, 0.5py+wpd]
       fillet: 1
 
-  mcucutout: 
+  _mcucutout: 
     - what: rectangle
       size: [30,40]
       corner: 1
@@ -227,27 +327,35 @@ outlines:
       adjust:
         shift: [px+5,0.35py]
 
-  usbcutout:
+  _usbcutout:
     - what: rectangle
-      size: [15,10]
+      size: [8,10]
       corner: 1
       where: matrix_inner_bottom
       adjust:
-        shift: [1.1px, 1.19py]
+        shift: [1.1px-1.5, 1.19py]
   pcb: [
           +board,
           -cutout_circle_small
+  ]
+  _case_pcb: [
+          +_case_board,
+          -cutout_circle_small_inner_wall
+  ]
+  _case_inner_pcb: [
+          +_case_inner_board,
+          -cutout_circle_small_inner_inner_wall
   ]
 
   plate: [
           +board,
           -cutout_circle_small,
-          -mcucutout,
+          -_mcucutout,
           -switches
   ]
 
-  xlplate: [
-          +xlboard,
+  _case_xlplate: [
+          +_case_xlboard,
           -cutout_circle_small_wall
   ]
 
@@ -399,24 +507,37 @@ pcbs:
         adjust: 
           shift: [0.5px,0]
 cases:
-  bottom:
-    - name: pcb
+  _bottom:
+    - name: _case_pcb
       extrude: 1
-  xlbottom:
-    - name: xlplate
+  _xlbottom:
+    - name: _case_xlplate
       extrude: 1
   _outerWall:
-    - name: xlplate
-      extrude: 5.6
+    - name: _case_xlplate
+      extrude: 7.2
   _innerWall:
-    - name: pcb
-      extrude: 5.6
-  wall:
+    - name: _case_pcb
+      extrude: 7.2
+  _outerShelf:
+    - name: _case_pcb
+      extrude: 4
+  _innerShelf:
+    - name: _case_inner_pcb
+      extrude: 4
+  _wall:
     - what: case
       name: _outerWall
       operation: add
     - what: case
       name: _innerWall
+      operation: subtract
+  _shelf:
+    - what: case
+      name: _outerShelf
+      operation: add
+    - what: case
+      name: _innerShelf
       operation: subtract
   _holes:
     - name: mounting
@@ -424,10 +545,10 @@ cases:
   _standoffs:
     - name: standoff
       extrude: 4
-  _usbcutout:
-    - name: usbcutout
-      extrude: 6
-      shift: [0,0,1]
+  _usbcutout_case:
+    - name: _usbcutout
+      extrude: 8
+      shift: [0,0,4]
   case:
     - what: case
       name: _standoffs
@@ -436,11 +557,14 @@ cases:
       name: _holes
       operation: subtract
     - what: case
-      name: xlbottom
+      name: _xlbottom
       operation: add
     - what: case
-      name: wall
+      name: _wall
       operation: add
     - what: case
-      name: _usbcutout
+      name: _shelf
+      operation: add
+    - what: case
+      name: _usbcutout_case
       operation: subtract
