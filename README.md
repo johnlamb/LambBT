@@ -3,15 +3,17 @@
 
 ![LambBT](images/lambbt.jpeg)
 
-A small 34 key split wireless keyboard with Choc V1 switches heavily inspired by the Sweep family and Architeuthis dux.
+A small 34 key split wireless keyboard with Choc V1 switches heavily inspired by the Sweep family and Architeuthis Dux. The column has the same splay as the AD and is a great start for starting to experiment with splays.
 
 ![LambBT Side](images/lambbt_standing.jpeg)
 
 The keyboard uses hotswap and a top plate together with a 3D printed case with M2 insets. 
 
-Socketing the Nice!Nano v2 allows the battery to fit under the MCU. 
+Socketing the Nice!Nano v2 allows the battery to fit under the MCU. The MCU can face both up and down on either split. For a face up orientation, as in the pictures, solder the MCU bridges on the top. For a face down orientation, solder the MCU bridges on the bottom/bac side.
 
-I opted to skip an external battery JST connector and instead use two battery holes to solder the wires. On/Off switch with a case cutout and a reset switch that wont be accidentally triggered.
+I opted to skip an external battery JST connector and instead use two battery holes to solder the wires. Ensure right polarity, the positive end (usually red) goes in the left hole on the left split, and the right hole on the right split(towards the key switches) whereas the negative/ground (usually black) goes in the outer hole (right hole on the left split and left hole on the right split).
+
+On/Off switch with a case cutout and a reset switch that wont be accidentally triggered.
 
 ## Design
 ![LambBT Detail](images/lambbt_side.jpeg)
