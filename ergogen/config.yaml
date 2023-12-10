@@ -334,6 +334,18 @@ outlines:
       where: matrix_inner_bottom
       adjust:
         shift: [1.1px-1.5, 1.19py]
+  _ring_cutout_inner:
+    - what: circle
+      radius: 22
+      where: matrix_index_top
+      adjust: 
+        shift: [-0.5px,-0.3py]
+  _ring_cutout_outer:
+    - what: circle
+      radius: 28
+      where: matrix_index_top
+      adjust: 
+        shift: [-0.5px,-0.3py]
   pcb: [
           +board,
           -cutout_circle_small
@@ -357,6 +369,11 @@ outlines:
   _case_xlplate: [
           +_case_xlboard,
           -cutout_circle_small_wall
+  ]
+
+  _ring_cutout: [
+          +_ring_cutout_outer,
+          -_ring_cutout_inner
   ]
 
   mounting:
@@ -509,22 +526,22 @@ pcbs:
 cases:
   _bottom:
     - name: _case_pcb
-      extrude: 1
+      extrude: 2
   _xlbottom:
     - name: _case_xlplate
-      extrude: 1
+      extrude: 2
   _outerWall:
     - name: _case_xlplate
-      extrude: 7.2
+      extrude: 9.2
   _innerWall:
     - name: _case_pcb
-      extrude: 7.2
+      extrude: 9.2
   _outerShelf:
     - name: _case_pcb
-      extrude: 4
+      extrude: 5
   _innerShelf:
     - name: _case_inner_pcb
-      extrude: 4
+      extrude: 5
   _wall:
     - what: case
       name: _outerWall
@@ -541,14 +558,18 @@ cases:
       operation: subtract
   _holes:
     - name: mounting
-      extrude: 4
+      extrude: 5
   _standoffs:
     - name: standoff
-      extrude: 4
+      extrude: 5
   _usbcutout_case:
     - name: _usbcutout
-      extrude: 8
-      shift: [0,0,4]
+      extrude: 12
+      shift: [0,0,5]
+  _ring_magnet:
+    - name: _ring_cutout
+      extrude: 0.6
+      shift: [0,-1.5py,0.8]
   case:
     - what: case
       name: _standoffs
@@ -567,4 +588,26 @@ cases:
       operation: add
     - what: case
       name: _usbcutout_case
+      operation: subtract
+  case_magnetic:
+    - what: case
+      name: _standoffs
+      operation: add
+    - what: case
+      name: _holes
+      operation: subtract
+    - what: case
+      name: _xlbottom
+      operation: add
+    - what: case
+      name: _wall
+      operation: add
+    - what: case
+      name: _shelf
+      operation: add
+    - what: case
+      name: _usbcutout_case
+      operation: subtract
+    - what: case
+      name: _ring_magnet
       operation: subtract

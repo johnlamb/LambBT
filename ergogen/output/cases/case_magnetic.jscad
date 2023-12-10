@@ -58,6 +58,14 @@ function _usbcutout_extrude_12_outline_fn(){
 }
 
 
+function _ring_cutout_extrude_0_6_outline_fn(){
+    return CAG.circle({"center":[196.810495,-97.7948399],"radius":28})
+.subtract(
+    CAG.circle({"center":[196.810495,-97.7948399],"radius":22})
+).extrude({ offset: [0, 0, 0.6] });
+}
+
+
 
 
                 function _standoffs_case_fn() {
@@ -322,102 +330,141 @@ function _usbcutout_extrude_12_outline_fn(){
             
             
 
-                function case_case_fn() {
+                function _ring_magnet_case_fn() {
                     
 
-                // creating part 0 of case case
-                let case__part_0 = _standoffs_case_fn();
+                // creating part 0 of case _ring_magnet
+                let _ring_magnet__part_0 = _ring_cutout_extrude_0_6_outline_fn();
 
                 // make sure that rotations are relative
-                let case__part_0_bounds = case__part_0.getBounds();
-                let case__part_0_x = case__part_0_bounds[0].x + (case__part_0_bounds[1].x - case__part_0_bounds[0].x) / 2
-                let case__part_0_y = case__part_0_bounds[0].y + (case__part_0_bounds[1].y - case__part_0_bounds[0].y) / 2
-                case__part_0 = translate([-case__part_0_x, -case__part_0_y, 0], case__part_0);
-                case__part_0 = rotate([0,0,0], case__part_0);
-                case__part_0 = translate([case__part_0_x, case__part_0_y, 0], case__part_0);
+                let _ring_magnet__part_0_bounds = _ring_magnet__part_0.getBounds();
+                let _ring_magnet__part_0_x = _ring_magnet__part_0_bounds[0].x + (_ring_magnet__part_0_bounds[1].x - _ring_magnet__part_0_bounds[0].x) / 2
+                let _ring_magnet__part_0_y = _ring_magnet__part_0_bounds[0].y + (_ring_magnet__part_0_bounds[1].y - _ring_magnet__part_0_bounds[0].y) / 2
+                _ring_magnet__part_0 = translate([-_ring_magnet__part_0_x, -_ring_magnet__part_0_y, 0], _ring_magnet__part_0);
+                _ring_magnet__part_0 = rotate([0,0,0], _ring_magnet__part_0);
+                _ring_magnet__part_0 = translate([_ring_magnet__part_0_x, _ring_magnet__part_0_y, 0], _ring_magnet__part_0);
 
-                case__part_0 = translate([0,0,0], case__part_0);
-                let result = case__part_0;
+                _ring_magnet__part_0 = translate([0,-28.5,0.8], _ring_magnet__part_0);
+                let result = _ring_magnet__part_0;
+                
+            
+                    return result;
+                }
+            
+            
+
+                function case_magnetic_case_fn() {
+                    
+
+                // creating part 0 of case case_magnetic
+                let case_magnetic__part_0 = _standoffs_case_fn();
+
+                // make sure that rotations are relative
+                let case_magnetic__part_0_bounds = case_magnetic__part_0.getBounds();
+                let case_magnetic__part_0_x = case_magnetic__part_0_bounds[0].x + (case_magnetic__part_0_bounds[1].x - case_magnetic__part_0_bounds[0].x) / 2
+                let case_magnetic__part_0_y = case_magnetic__part_0_bounds[0].y + (case_magnetic__part_0_bounds[1].y - case_magnetic__part_0_bounds[0].y) / 2
+                case_magnetic__part_0 = translate([-case_magnetic__part_0_x, -case_magnetic__part_0_y, 0], case_magnetic__part_0);
+                case_magnetic__part_0 = rotate([0,0,0], case_magnetic__part_0);
+                case_magnetic__part_0 = translate([case_magnetic__part_0_x, case_magnetic__part_0_y, 0], case_magnetic__part_0);
+
+                case_magnetic__part_0 = translate([0,0,0], case_magnetic__part_0);
+                let result = case_magnetic__part_0;
                 
             
 
-                // creating part 1 of case case
-                let case__part_1 = _holes_case_fn();
+                // creating part 1 of case case_magnetic
+                let case_magnetic__part_1 = _holes_case_fn();
 
                 // make sure that rotations are relative
-                let case__part_1_bounds = case__part_1.getBounds();
-                let case__part_1_x = case__part_1_bounds[0].x + (case__part_1_bounds[1].x - case__part_1_bounds[0].x) / 2
-                let case__part_1_y = case__part_1_bounds[0].y + (case__part_1_bounds[1].y - case__part_1_bounds[0].y) / 2
-                case__part_1 = translate([-case__part_1_x, -case__part_1_y, 0], case__part_1);
-                case__part_1 = rotate([0,0,0], case__part_1);
-                case__part_1 = translate([case__part_1_x, case__part_1_y, 0], case__part_1);
+                let case_magnetic__part_1_bounds = case_magnetic__part_1.getBounds();
+                let case_magnetic__part_1_x = case_magnetic__part_1_bounds[0].x + (case_magnetic__part_1_bounds[1].x - case_magnetic__part_1_bounds[0].x) / 2
+                let case_magnetic__part_1_y = case_magnetic__part_1_bounds[0].y + (case_magnetic__part_1_bounds[1].y - case_magnetic__part_1_bounds[0].y) / 2
+                case_magnetic__part_1 = translate([-case_magnetic__part_1_x, -case_magnetic__part_1_y, 0], case_magnetic__part_1);
+                case_magnetic__part_1 = rotate([0,0,0], case_magnetic__part_1);
+                case_magnetic__part_1 = translate([case_magnetic__part_1_x, case_magnetic__part_1_y, 0], case_magnetic__part_1);
 
-                case__part_1 = translate([0,0,0], case__part_1);
-                result = result.subtract(case__part_1);
+                case_magnetic__part_1 = translate([0,0,0], case_magnetic__part_1);
+                result = result.subtract(case_magnetic__part_1);
                 
             
 
-                // creating part 2 of case case
-                let case__part_2 = _xlbottom_case_fn();
+                // creating part 2 of case case_magnetic
+                let case_magnetic__part_2 = _xlbottom_case_fn();
 
                 // make sure that rotations are relative
-                let case__part_2_bounds = case__part_2.getBounds();
-                let case__part_2_x = case__part_2_bounds[0].x + (case__part_2_bounds[1].x - case__part_2_bounds[0].x) / 2
-                let case__part_2_y = case__part_2_bounds[0].y + (case__part_2_bounds[1].y - case__part_2_bounds[0].y) / 2
-                case__part_2 = translate([-case__part_2_x, -case__part_2_y, 0], case__part_2);
-                case__part_2 = rotate([0,0,0], case__part_2);
-                case__part_2 = translate([case__part_2_x, case__part_2_y, 0], case__part_2);
+                let case_magnetic__part_2_bounds = case_magnetic__part_2.getBounds();
+                let case_magnetic__part_2_x = case_magnetic__part_2_bounds[0].x + (case_magnetic__part_2_bounds[1].x - case_magnetic__part_2_bounds[0].x) / 2
+                let case_magnetic__part_2_y = case_magnetic__part_2_bounds[0].y + (case_magnetic__part_2_bounds[1].y - case_magnetic__part_2_bounds[0].y) / 2
+                case_magnetic__part_2 = translate([-case_magnetic__part_2_x, -case_magnetic__part_2_y, 0], case_magnetic__part_2);
+                case_magnetic__part_2 = rotate([0,0,0], case_magnetic__part_2);
+                case_magnetic__part_2 = translate([case_magnetic__part_2_x, case_magnetic__part_2_y, 0], case_magnetic__part_2);
 
-                case__part_2 = translate([0,0,0], case__part_2);
-                result = result.union(case__part_2);
+                case_magnetic__part_2 = translate([0,0,0], case_magnetic__part_2);
+                result = result.union(case_magnetic__part_2);
                 
             
 
-                // creating part 3 of case case
-                let case__part_3 = _wall_case_fn();
+                // creating part 3 of case case_magnetic
+                let case_magnetic__part_3 = _wall_case_fn();
 
                 // make sure that rotations are relative
-                let case__part_3_bounds = case__part_3.getBounds();
-                let case__part_3_x = case__part_3_bounds[0].x + (case__part_3_bounds[1].x - case__part_3_bounds[0].x) / 2
-                let case__part_3_y = case__part_3_bounds[0].y + (case__part_3_bounds[1].y - case__part_3_bounds[0].y) / 2
-                case__part_3 = translate([-case__part_3_x, -case__part_3_y, 0], case__part_3);
-                case__part_3 = rotate([0,0,0], case__part_3);
-                case__part_3 = translate([case__part_3_x, case__part_3_y, 0], case__part_3);
+                let case_magnetic__part_3_bounds = case_magnetic__part_3.getBounds();
+                let case_magnetic__part_3_x = case_magnetic__part_3_bounds[0].x + (case_magnetic__part_3_bounds[1].x - case_magnetic__part_3_bounds[0].x) / 2
+                let case_magnetic__part_3_y = case_magnetic__part_3_bounds[0].y + (case_magnetic__part_3_bounds[1].y - case_magnetic__part_3_bounds[0].y) / 2
+                case_magnetic__part_3 = translate([-case_magnetic__part_3_x, -case_magnetic__part_3_y, 0], case_magnetic__part_3);
+                case_magnetic__part_3 = rotate([0,0,0], case_magnetic__part_3);
+                case_magnetic__part_3 = translate([case_magnetic__part_3_x, case_magnetic__part_3_y, 0], case_magnetic__part_3);
 
-                case__part_3 = translate([0,0,0], case__part_3);
-                result = result.union(case__part_3);
+                case_magnetic__part_3 = translate([0,0,0], case_magnetic__part_3);
+                result = result.union(case_magnetic__part_3);
                 
             
 
-                // creating part 4 of case case
-                let case__part_4 = _shelf_case_fn();
+                // creating part 4 of case case_magnetic
+                let case_magnetic__part_4 = _shelf_case_fn();
 
                 // make sure that rotations are relative
-                let case__part_4_bounds = case__part_4.getBounds();
-                let case__part_4_x = case__part_4_bounds[0].x + (case__part_4_bounds[1].x - case__part_4_bounds[0].x) / 2
-                let case__part_4_y = case__part_4_bounds[0].y + (case__part_4_bounds[1].y - case__part_4_bounds[0].y) / 2
-                case__part_4 = translate([-case__part_4_x, -case__part_4_y, 0], case__part_4);
-                case__part_4 = rotate([0,0,0], case__part_4);
-                case__part_4 = translate([case__part_4_x, case__part_4_y, 0], case__part_4);
+                let case_magnetic__part_4_bounds = case_magnetic__part_4.getBounds();
+                let case_magnetic__part_4_x = case_magnetic__part_4_bounds[0].x + (case_magnetic__part_4_bounds[1].x - case_magnetic__part_4_bounds[0].x) / 2
+                let case_magnetic__part_4_y = case_magnetic__part_4_bounds[0].y + (case_magnetic__part_4_bounds[1].y - case_magnetic__part_4_bounds[0].y) / 2
+                case_magnetic__part_4 = translate([-case_magnetic__part_4_x, -case_magnetic__part_4_y, 0], case_magnetic__part_4);
+                case_magnetic__part_4 = rotate([0,0,0], case_magnetic__part_4);
+                case_magnetic__part_4 = translate([case_magnetic__part_4_x, case_magnetic__part_4_y, 0], case_magnetic__part_4);
 
-                case__part_4 = translate([0,0,0], case__part_4);
-                result = result.union(case__part_4);
+                case_magnetic__part_4 = translate([0,0,0], case_magnetic__part_4);
+                result = result.union(case_magnetic__part_4);
                 
             
 
-                // creating part 5 of case case
-                let case__part_5 = _usbcutout_case_case_fn();
+                // creating part 5 of case case_magnetic
+                let case_magnetic__part_5 = _usbcutout_case_case_fn();
 
                 // make sure that rotations are relative
-                let case__part_5_bounds = case__part_5.getBounds();
-                let case__part_5_x = case__part_5_bounds[0].x + (case__part_5_bounds[1].x - case__part_5_bounds[0].x) / 2
-                let case__part_5_y = case__part_5_bounds[0].y + (case__part_5_bounds[1].y - case__part_5_bounds[0].y) / 2
-                case__part_5 = translate([-case__part_5_x, -case__part_5_y, 0], case__part_5);
-                case__part_5 = rotate([0,0,0], case__part_5);
-                case__part_5 = translate([case__part_5_x, case__part_5_y, 0], case__part_5);
+                let case_magnetic__part_5_bounds = case_magnetic__part_5.getBounds();
+                let case_magnetic__part_5_x = case_magnetic__part_5_bounds[0].x + (case_magnetic__part_5_bounds[1].x - case_magnetic__part_5_bounds[0].x) / 2
+                let case_magnetic__part_5_y = case_magnetic__part_5_bounds[0].y + (case_magnetic__part_5_bounds[1].y - case_magnetic__part_5_bounds[0].y) / 2
+                case_magnetic__part_5 = translate([-case_magnetic__part_5_x, -case_magnetic__part_5_y, 0], case_magnetic__part_5);
+                case_magnetic__part_5 = rotate([0,0,0], case_magnetic__part_5);
+                case_magnetic__part_5 = translate([case_magnetic__part_5_x, case_magnetic__part_5_y, 0], case_magnetic__part_5);
 
-                case__part_5 = translate([0,0,0], case__part_5);
-                result = result.subtract(case__part_5);
+                case_magnetic__part_5 = translate([0,0,0], case_magnetic__part_5);
+                result = result.subtract(case_magnetic__part_5);
+                
+            
+
+                // creating part 6 of case case_magnetic
+                let case_magnetic__part_6 = _ring_magnet_case_fn();
+
+                // make sure that rotations are relative
+                let case_magnetic__part_6_bounds = case_magnetic__part_6.getBounds();
+                let case_magnetic__part_6_x = case_magnetic__part_6_bounds[0].x + (case_magnetic__part_6_bounds[1].x - case_magnetic__part_6_bounds[0].x) / 2
+                let case_magnetic__part_6_y = case_magnetic__part_6_bounds[0].y + (case_magnetic__part_6_bounds[1].y - case_magnetic__part_6_bounds[0].y) / 2
+                case_magnetic__part_6 = translate([-case_magnetic__part_6_x, -case_magnetic__part_6_y, 0], case_magnetic__part_6);
+                case_magnetic__part_6 = rotate([0,0,0], case_magnetic__part_6);
+                case_magnetic__part_6 = translate([case_magnetic__part_6_x, case_magnetic__part_6_y, 0], case_magnetic__part_6);
+
+                case_magnetic__part_6 = translate([0,0,0], case_magnetic__part_6);
+                result = result.subtract(case_magnetic__part_6);
                 
             
                     return result;
@@ -426,7 +473,7 @@ function _usbcutout_extrude_12_outline_fn(){
             
         
             function main() {
-                return case_case_fn();
+                return case_magnetic_case_fn();
             }
 
         
